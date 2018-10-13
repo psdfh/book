@@ -1,0 +1,66 @@
+总纲：
+ 指导原则：六大规则
+   单一职责原则：每个类都只负责单一的功能，切不可太多，并且一个类应当尽量的把一个功能做到极致
+   里氏替换原则：一个之类应该可以替换掉父类并且可以正常工作
+   接口隔离原则(接口最小化原则)：一个接口拥有就的行为应该尽可能的小
+   依赖倒置原则：高层模块下该依赖于底层模块，二者都应该依赖于接口，抽象不应该依赖于细节，细节应该依赖于抽象
+   迪米特原则(最小知道原则)：一个类应该尽量不要知道其他类太多的东西。不要和陌生的类有太多的接触
+   开-闭原则：对修改关闭，对扩展开放
+   
+ 单例模式：在整个应用中，同一时刻，有且只能有一种状态
+ 			饱汉式：
+	 			public class FullSingleton {	
+					private FullSingleton(){}
+					private static FullSingleton fullSingletion = new FullSingleton();					
+					public static FullSingleton getInstance(){
+						return fullSingletion;
+					}
+				}
+				
+			饿汉式：(锁+双判断)
+				public class HungrySingleton {	
+					private HungrySingleton(){}
+					private static HungrySingleton hungrySingletion;					
+					public static HungrySingleton getHungrySingletion(){
+						if(hungrySingletion == null){
+							synchronized (HungrySingleton.class) {
+								if(hungrySingletion == null){
+									hungrySingletion = new HungrySingleton();
+								}
+							}
+						}
+						return hungrySingletion;
+					}
+				}
+				
+			饿汉式变异：(锁+双判断+volatile)
+				public class VolatileSingleton {	
+					private static volatile VolatileSingleton volatileSingletion;
+					private VolatileSingleton() {}					
+					public static VolatileSingleton getInstance(){
+						if(volatileSingletion == null){
+							synchronized (VolatileSingleton.class) {
+								if(volatileSingletion == null){
+									volatileSingletion = new VolatileSingleton();
+								}
+							}
+						}
+						return volatileSingletion;
+					}
+				}
+
+		  JVM控制
+		  public class JvmSingleton {
+				private JvmSingleton(){}				
+				public static JvmSingleton getInstance(){
+					return InnerJvmSingletion.jvmSingletion;
+				}				
+				private static class InnerJvmSingletion{
+					protected static JvmSingleton jvmSingletion = new JvmSingleton();;
+				}
+			}
+			
+			枚举
+			public enum EnumSingleton {
+				enumSingletion
+			}

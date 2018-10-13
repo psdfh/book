@@ -1,0 +1,28 @@
+前端构建
+1. 下载NODEJS  http://nodejs.org
+2. 注册国内镜像： https://npm.taobao.org/
+3. 用cnpm安装bower： cnpm install bower -g
+4. 在项目的文件夹下，执行cnpm install
+5. 在项目的文件夹下，执行bower install
+6. 安装gulp, cnpm install gulp -g
+7. 运行项目：gulp serve
+8.打包项目：gulp build,会在项目内生成dist文件夹，将dist所有文件copy到nginx的html目录下部署
+
+
+maven 构建
+mvn clean install -Dmaven.test.skip=true
+
+文件备份
+tar -zcvf reserve/opt-cruiser-new.tar.gz  --exclude=opt-cruiser-new/*/target --exclude=opt-cruiser-new/*/bin  --exclude=opt-cruiser-new/.git opt-cruiser-new
+tar -zcvf reserve/opt-cruiser.tar.gz  --exclude=opt-cruiser/*/target --exclude=opt-cruiser/*/bin  --exclude=opt-cruiser/.git opt-cruiser
+代理服务地址
+10.185.113.100
+10.191.113.100
+
+docker 重启
+docker ps  #查找到容器编号
+docker restart 容器编号   #重新启动
+
+查看文件夹大小 du -h
+
+ tar -zcvf reserve/Console-W_10-16.tar.gz  --exclude=Console-W/.git  Console-W
